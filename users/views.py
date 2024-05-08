@@ -9,6 +9,8 @@ from rest_framework.generics import CreateAPIView, UpdateAPIView
 from rest_framework.permissions import BasePermission
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin
+from rest_framework.viewsets import GenericViewSet
 
 from config import settings
 from users.models import PasswordResets
@@ -23,9 +25,13 @@ class RegisterAPIView(CreateAPIView):
         serializer.save()
 
 
-class ProfileUpdateView(ModelViewSet):
+class ProfileUpdateView(CreateModelMixin,
+                        RetrieveModelMixin,
+                        UpdateModelMixin,
+                        DestroyModelMixin,
+                        GenericViewSet):
     queryset = get_user_model().objects.all()
-    allowed_methods = ('GET', 'PUT', 'PATCH', 'DELETE')
+    http_method_names = ('get', 'put', 'patch', 'delete')
     serializer_class = ProfileSerializer
     permission_classes = (IsOwnerOrSuperUser,)
 
@@ -33,8 +39,8 @@ class ProfileUpdateView(ModelViewSet):
 @api_view(['POST'])
 def password_change_view(request):
     if request.method == 'POST':
-        old_password = request.POST['old_password']
-        new_password = request.POST['new_password']
+        old_password = request.data['old_password']
+        new_password = request.data['new_password']
         user = request.user
         if user.check_password(old_password):
             user.set_password(new_password)

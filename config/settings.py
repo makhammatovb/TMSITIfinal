@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = getenv('SECRET_KEY')
+SECRET_KEY = "Bobur"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -40,6 +40,7 @@ THIRD_APPS = [
 
 MY_APPS = [
     'users',
+    'app_tmsiti',
 ]
 
 INSTALLED_APPS = DJANGO_DEFAULT_APPS + THIRD_APPS + MY_APPS
@@ -152,6 +153,9 @@ SWAGGER_SETTINGS = {
 }
 
 REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 5,
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
@@ -202,8 +206,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = getenv('EMAIL_HOST_USER')
+EMAIL_HOST_USER = "fmetube01@gmail.com"
 # https://myaccount.google.com/apppasswords?rapt=AEjHL4PYdZpsTQqErM5VNV1NzBbxaWGWaAuFbG12GJMlrDId-ycKtnRDq5MSuAg_FmxYqa-gs1_wnVbAFPqwO2hfSOSpRPX0JMIYIr8aRewzquXL0x9t3us
-EMAIL_HOST_PASSWORD = getenv('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_PASSWORD = "drux vlmf amlx rxyo"
 # EMAIL_USE_SSL = True
 
+AUTH_USER_MODEL = 'users.CustomUser'
+
+LOGIN_URL = 'api/token/'
