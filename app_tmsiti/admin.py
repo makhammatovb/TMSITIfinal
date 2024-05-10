@@ -4,10 +4,18 @@ from django.contrib import admin
 from .models import(
     Announcements,
     News,
-    NewsDetail
+    NewsDetail,
+    Leadership,
+    Units,
+    Standards,
+    StandardsInformation
 )
 
 
 admin.site.register(Announcements)
 admin.site.register(News)
 admin.site.register(NewsDetail)
+admin.site.register(Leadership)
+admin.site.register(Units)
+admin.site.register(Standards)
+admin.site.register(StandardsInformation)

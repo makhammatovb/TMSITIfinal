@@ -162,7 +162,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": False,
     "BLACKLIST_AFTER_ROTATION": False,
@@ -213,4 +213,4 @@ EMAIL_HOST_PASSWORD = "drux vlmf amlx rxyo"
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
-LOGIN_URL = 'api/token/'
+LOGIN_URL = 'api/v1/token/'
