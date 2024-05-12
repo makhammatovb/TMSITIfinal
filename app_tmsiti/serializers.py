@@ -6,7 +6,9 @@ from .models import (Announcements,
                      Leadership,
                      Units,
                      Standards,
-                     StandardsInformation
+                     StandardsInformation,
+                     Contact,
+                     BuildingRegulations,
 )
 
 
@@ -56,4 +58,19 @@ class StandardsInformationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = StandardsInformation
+        fields = '__all__'
+
+
+
+class ContactSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Contact
+        fields = '__all__'
+
+
+class BuildingRegulationsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = BuildingRegulations
         fields = '__all__'

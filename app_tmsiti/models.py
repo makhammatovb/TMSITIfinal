@@ -87,3 +87,34 @@ class Standards(models.Model):
 class StandardsInformation(models.Model):
     standard = models.ForeignKey(Standards, on_delete=models.CASCADE)
     standard_file = models.FileField(upload_to='standards/')
+
+
+class Contact(models.Model):
+    fullname = models.CharField(max_length=255)
+    email = models.EmailField()
+    phone_number = models.CharField(max_length=13)
+    leadership = models.ForeignKey(Leadership, on_delete=models.CASCADE)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.fullname
+
+    class Meta:
+        verbose_name_plural = 'Contacts'
+        db_table = 'contact'
+
+
+class BuildingRegulations(models.Model):
+    building_number = models.IntegerField(max_length=10, unique=True)
+    building_mark = models.CharField(max_length=15, unique=True)
+    building_name = models.CharField(max_length=255)
+    building_document = models.FileField(upload_to='buildings/')
+
+    def __str__(self):
+        return self.building_name
+
+    class Meta:
+        verbose_name_plural = 'Building Regulations'
+        db_table = 'building_regulations'
+
+

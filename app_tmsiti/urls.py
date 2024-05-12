@@ -8,7 +8,10 @@ from .views import (AnnouncementsView,
                     LeadershipView,
                     UnitsView,
                     StandardsView,
-                    StandardsInformationView
+                    StandardsInformationView,
+                    ContactsView,
+                    BuildingRegulationsView,
+                    full_search,
 )
 
 router = DefaultRouter()
@@ -19,6 +22,11 @@ router.register(r'leadership', LeadershipView)
 router.register(r'units', UnitsView)
 router.register(r'standards', StandardsView)
 router.register(r'standardsinformation', StandardsInformationView)
+router.register(r'contacts', ContactsView)
+router.register(r'buildingregulations', BuildingRegulationsView)
 
 urlpatterns = router.urls
 
+urlpatterns += [
+    path('search/', full_search, name='search'),
+]

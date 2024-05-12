@@ -7,7 +7,8 @@ from .models import (Announcements,
                      NewsDetail,
                      Leadership,
                      Units,
-                     Standards
+                     Standards,
+                     BuildingRegulations
 )
 
 class AnnouncementsFilter(FilterSet):
@@ -96,10 +97,28 @@ class StandardsFilter(FilterSet):
         model = Standards
         fields = []
 
-    def standard_filter(self, query, name, value):
+    def standard_filter(self, queryset, name, value):
         try:
-            return self.queryset.filter(Q(standard_name__icontains=value))
+            return queryset.filter(Q(standard_name__icontains=value))
         except:
-            return self.queryset.filter(
+            return queryset.filter(
                 Q(standard_description__icontains=value)
             )
+
+
+class BuildingFilter(FilterSet):
+    buildings = CharFilter(method='building_filter', label='Search buildings')
+
+    class Meta:
+        model = BuildingRegulations
+        fields = []
+
+    def building_filter(self, query, name, value):
+        try:
+            return self.queryset.filter(Q(building_mark__icontains=value))
+        except:
+            return self.queryset.filter(
+                Q(buiding_name__icontains=value)
+            )
+
+

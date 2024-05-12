@@ -8,7 +8,9 @@ from .models import(
     Leadership,
     Units,
     Standards,
-    StandardsInformation
+    StandardsInformation,
+    Contact,
+    BuildingRegulations,
 )
 
 
@@ -19,3 +21,5 @@ admin.site.register(Leadership)
 admin.site.register(Units)
 admin.site.register(Standards)
 admin.site.register(StandardsInformation)
+admin.site.register(Contact)
+admin.site.register(BuildingRegulations)

@@ -36,6 +36,8 @@ THIRD_APPS = [
     'drf_yasg',
     'rest_framework',
     'rest_framework_simplejwt',
+    'django_filters',
+    'ckeditor',
 ]
 
 MY_APPS = [
@@ -214,3 +216,11 @@ EMAIL_HOST_PASSWORD = "drux vlmf amlx rxyo"
 AUTH_USER_MODEL = 'users.CustomUser'
 
 LOGIN_URL = 'api/v1/token/'
+
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+CKEDITOR_UPLOAD_PATH = "ckeditor/uploads/"
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+    },
+}
