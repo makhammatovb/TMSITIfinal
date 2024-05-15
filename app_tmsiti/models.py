@@ -105,7 +105,7 @@ class Contact(models.Model):
 
 
 class BuildingRegulations(models.Model):
-    building_number = models.IntegerField(max_length=10, unique=True)
+    building_number = models.IntegerField(unique=True)
     building_mark = models.CharField(max_length=15, unique=True)
     building_name = models.CharField(max_length=255)
     building_document = models.FileField(upload_to='buildings/')
